@@ -1,51 +1,59 @@
 <script>
+import TextField from "../components/textField";
+import TextArea from "../components/textarea";
 export default {
+  components: {
+    TextField,
+    TextArea
+  },
   data: () => ({
-    errorMessages: "",
+    errorMessages: null,
     budget: null,
-    startDate: null,
-    endDate: null,
-    facebook_title: null,
-    facebook_text: null,
-    facebook_description: null,
-    formHasErrors: false,
-    formCheck: [v => !!v || "This field is really required"]
+    campaign_objective: null,
+    facebook_account_id: null,
+    facebook_page_id: null,
+    total_budget: null,
+    start_date: null,
+    end_date: null,
+    landing_page_url: null,
+    landing_page_display_url: null,
+    ad_title: null,
+    ad_message: null,
+    ad_description: null,
+    ad_image_url: null
   }),
 
   computed: {
     form() {
       return {
         budget: this.budget,
-        startDate: this.startDate,
-        endDate: this.endDate,
-        facebook_title: this.facebook_title,
-        facebook_text: this.facebook_text,
-        facebook_description: this.facebook_description
+        campaign_objective: this.campaign_objective,
+        facebook_account_id: this.facebook_account_id,
+        facebook_page_id: this.facebook_page_id,
+        total_budget: this.total_budget,
+        start_date: this.start_date,
+        end_date: this.end_date,
+        landing_page_url: this.landing_page_url,
+        landing_page_display_url: this.landing_page_display_url,
+        ad_title: this.ad_title,
+        ad_message: this.ad_message,
+        ad_description: this.ad_description,
+        ad_image_url: this.ad_image_url
       };
     }
   },
 
-  watch: {
-    name() {
-      this.errorMessages = "";
-    }
-  },
-
   methods: {
-    resetForm() {
-      this.errorMessages = "";
-      this.formHasErrors = false;
-      Object.keys(this.form).forEach(f => {
-        this.$refs[f].reset();
-      });
-    },
     submit() {
       this.formHasErrors = false;
 
       if (this.$refs.form.validate()) {
         console.log(this.form);
-        this.resetForm();
+        this.$refs.form.reset();
       }
+    },
+    clear() {
+      this.$refs.form.reset();
     }
   }
 };
@@ -59,75 +67,71 @@ export default {
       <v-card>
         <v-form ref="form">
           <v-card-text>
-            <v-text-field
-              ref="budget"
-              v-model="budget"
-              clearable
-              prefix="€"
-              :rules="formCheck"
-              :error-messages="errorMessages"
+            <TextField
+              v-model="campaign_objective"
+              label="Campaign Objective"
+              type="text"
+            />
+            <TextField
+              v-model="facebook_account_id"
+              label="Facebook Account Id"
+              type="text"
+            />
+            <TextField
+              v-model="facebook_page_id"
+              label="Facebook Page Id"
+              type="text"
+            />
+            <TextField
+              v-model="total_budget"
               label="Monthly budget (in €)"
-              placeholder="10,000"
-              required
-              outlined
               type="number"
-            ></v-text-field>
-            <v-text-field
-              ref="startDate"
-              v-model="startDate"
-              outlined
-              clearable
-              type="date"
-              :rules="formCheck"
+              placeholder="500"
+            />
+            <TextField
+              v-model="start_date"
               label="Start Date"
-              placeholder="When to start"
-              required
-            ></v-text-field>
-            <v-text-field
-              ref="endDate"
-              v-model="endDate"
               type="date"
-              clearable
-              outlined
-              :rules="formCheck"
+              placeholder="When to start the campaign"
+            />
+            <TextField
+              v-model="end_date"
               label="End Date"
-              placeholder="When to finish"
-              required
-            ></v-text-field>
-            <v-textarea
-              ref="facebook_title"
-              v-model="facebook_title"
-              clearable
-              auto-grow
-              rows="1"
-              outlined
-              :rules="formCheck"
-              label="Facebook title"
-            ></v-textarea>
-            <v-textarea
-              ref="facebook_text"
-              v-model="facebook_text"
-              clearable
-              auto-grow
-              rows="1"
-              outlined
-              :rules="formCheck"
-              label="Facebook text"
-            ></v-textarea>
-            <v-textarea
-              clearable
-              auto-grow
-              rows="1"
-              outlined
-              :rules="formCheck"
-              ref="facebook_description"
-              v-model="facebook_description"
-              label="Facebook Description"
-            ></v-textarea>
+              type="date"
+              placeholder="When to finish the campaign"
+            />
+            <TextField
+              v-model="landing_page_url"
+              label="Landing Page URL"
+              type="url"
+              placeholder="Paste the Page URL"
+            />
+            <TextField
+              v-model="landing_page_display_url"
+              label="Landing Page Display URL"
+              type="url"
+              placeholder="Paste the Page Display URL"
+            />
+            <TextField
+              v-model="ad_title"
+              label="ad_title"
+              type="text"
+              placeholder="Your Ad Title"
+            />
+
+            <TextArea label=" Ad Message" v-model="ad_message" />
+            <TextArea label=" Ad Description" v-model="ad_description" />
+
+            <TextField
+              v-model="ad_image_url"
+              label="Ad Image URl"
+              type="url"
+              placeholder="Insert Your Image URL"
+            />
           </v-card-text>
           <v-divider class="mt-2"></v-divider>
           <v-card-actions>
-            <v-btn text>Cancel</v-btn>
+            <v-btn text @click="clear">Cancel</v-btn>
             <v-spacer></v-spacer>
 
             <v-btn color="success" @click="submit">Submit</v-btn>
@@ -135,5 +139,6 @@ export default {
         </v-form>
       </v-card>
     </v-col>
+    <h2 class="text-center subheading py-3">{{ form }}</h2>
   </v-row>
 </template>

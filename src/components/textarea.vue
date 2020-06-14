@@ -1,17 +1,8 @@
 <script>
 export default {
-  props: {
-    name: {
-      type: String,
-      default: () => ""
-    },
-    label: {
-      type: String,
-      default: () => ""
-    }
-  },
+  props: ["label", "value"],
+
   data: () => ({
-    content: "",
     formCheck: [v => (!v?.length ? "This field is really required" : "")]
   })
 };
@@ -21,9 +12,10 @@ export default {
   <v-textarea
     clearable
     auto-grow
+    :value="value"
     rows="1"
     outlined
-    v-model="content"
+    @input="$emit('input', $event)"
     :rules="formCheck"
     :label="label"
   ></v-textarea>

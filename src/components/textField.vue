@@ -1,27 +1,10 @@
 <script>
 export default {
-  props: {
-    name: {
-      type: String,
-      default: () => ""
-    },
-    typeOfInput: {
-      type: String,
-      default: () => ""
-    },
-    label: {
-      type: String,
-      default: () => ""
-    },
-    placeholder: {
-      type: String,
-      default: () => ""
-    }
-  },
+  props: ["value", "type", "label", "placeholder"],
   data: () => ({
-    content: "",
     errorMessages: "",
-    formCheck: [v => (!v?.length ? "This field is really required" : "")]
+    formHasErrors: false,
+    formCheck: [v => !!v || "This field is really required"]
   }),
   watch: {
     name() {
@@ -32,9 +15,9 @@ export default {
 </script>
 <template>
   <v-text-field
-    :ref="content"
-    v-model="content"
-    :type="typeOfInput"
+    :type="type"
+    @input="$emit('input', $event)"
+    :value="value"
     clearable
     outlined
     :rules="formCheck"
