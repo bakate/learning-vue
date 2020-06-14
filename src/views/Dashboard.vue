@@ -8,44 +8,14 @@ export default {
 <template>
   <div class="text-center">
     <h1 class="subheading grey--text">This is Your Dashboard page</h1>
-    <div>
-      <v-btn class="ma-2" color="primary" dark>
-        Accept
-        <v-icon dark right>mdi-checkbox-marked-circle</v-icon>
-      </v-btn>
-
-      <v-btn class="ma-2" color="red" dark>
-        Decline
-        <v-icon dark right>mdi-cancel</v-icon>
-      </v-btn>
-
-      <v-btn class="ma-2" dark>
-        <v-icon dark left>mdi-minus_circle</v-icon>Cancel
-      </v-btn>
-    </div>
-
-    <div>
-      <v-btn class="ma-2" color="orange darken-2" dark>
-        <v-icon dark left>mdi-arrow-left</v-icon>Back
-      </v-btn>
-
-      <v-btn class="ma-2" color="purple" dark>
-        <v-icon dark>mdi-wrench</v-icon>
-      </v-btn>
-
-      <v-btn class="ma-2" color="indigo" dark>
-        <v-icon dark>mdi-cloud-upload</v-icon>
-      </v-btn>
-    </div>
-
-    <div>
-      <v-btn class="ma-2" text icon color="blue lighten-2">
-        <v-icon>mdi-thumb-up</v-icon>
-      </v-btn>
-
-      <v-btn class="ma-2" text icon color="red lighten-2">
-        <v-icon>mdi-thumb-down</v-icon>
-      </v-btn>
-    </div>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur quis
+      adipisci illum et odit perspiciatis repudiandae totam, enim itaque
+      consequatur, assumenda ipsum cupiditate officiis veritatis suscipit
+      delectus sequi incidunt fuga?Ullam, explicabo totam! Quam sequi, suscipit
+      necessitatibus cumque odio officia modi eaque facere perspiciatis, sint
+      voluptates dolorem quod accusamus pariatur ut nam. Vero dolorem fuga
+      praesentium quibusdam ab sequi eos?
+    </p>
   </div>
 </template>
